@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in Space</title>
+    <meta name="theme-color" content="#121212">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=18">
+    
+    <style>
+        /* Estilo específico para a 404 */
+        .error-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .error-code {
+            font-family: 'Fira Code', monospace;
+            font-size: 8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 30px rgba(13, 183, 237, 0.5);
+            margin-bottom: 0;
+            animation: pulse 3s infinite;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div style="position: fixed; width: 100%; height: 100%; z-index: -1;">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <div class="sobre-text" style="max-width: 600px; background: rgba(30,30,30,0.5); backdrop-filter: blur(5px);">
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">
+                <strong>Houston, temos um problema!</strong>
+            </p>
+            <p>
+                A página que você está procurando foi sugada por um buraco negro ou nunca existiu neste universo.
+            </p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <a href="index.html" class="btn-linktree" style="width: auto; padding: 15px 40px;">
+                <i class="fas fa-rocket"></i> Voltar para a Terra (Home)
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João Figueiró</title>
+    <meta name="theme-color" content="#121212">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=16">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">JV.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#certificacoes">Certificações</a></li>
+            <li><a href="MeuSetup.html">Setup</a></li>
+            <li><a href="GarageX5.html" style="color: #ff9f43;">GarageX5</a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+        
+        </div>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="avatar-container">
+                <img src="images/avatar.png" alt="João Figueiró" class="avatar">
+            </div>
+            <h1>João Figueiró</h1>
+            <p class="tagline terminal-style">
+                <span id="typewriter" data-text="> Construtor de engenhocas, gearhead e maluco das informática_"></span><span class="cursor">|</span>
+            </p>
+            
+            <div class="hero-buttons-stack">
+                <a href="#sobre" class="btn-linktree btn-app"><i class="fas fa-user"></i> Sobre Mim</a>
+                <a href="#projetos" class="btn-linktree btn-app"><i class="fas fa-code"></i> Projetos</a>
+                <a href="#certificacoes" class="btn-linktree btn-app"><i class="fas fa-graduation-cap"></i> Certificações</a>
+                <a href="GarageX5.html" class="btn-linktree btn-app"><i class="fas fa-car"></i> GarageX5</a>
+            </div>
+
+            <div class="hero-social-circles">
+                <a href="https://github.com/jvfigueiro" target="_blank" class="btn-circle" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/figueiro" target="_blank" class="btn-circle" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://instagr.am/jvfigueiro" target="_blank" class="btn-circle" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:contato@jvfigueiro.com" class="btn-circle" title="E-mail"><i class="fas fa-envelope"></i></a>
+                <a href="https://ai.jvfigueiro.com" target="_blank" class="btn-circle" title="Nask AI"><i class="fas fa-microchip"></i></a>
+                <a href="https://naskgarage.jvfigueiro.com" target="_blank" class="btn-circle" title="Nask Garage"><i class="fas fa-oil-can"></i></a>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="sobre" class="content-section">
+        <div class="sobre-grid">
+            <div class="sobre-text">
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">Olá! Sou o João :)</p>
+                <p>Profissional de TI com um grande apreço pelo que faço. Sou um <strong>autodidata</strong> movido por uma curiosidade constante, o que me leva a desenvolver soluções criativas tanto para problemas simples quanto complexos.</p>
+                <p>Gosto de explorar sistemas em geral — computacionais, elétricos e automotivos. Meu objetivo é sempre entender como cada detalhe funciona, por que funciona, e <strong>como pode ser melhorado</strong>.</p>
+                <p>Sou formado em Análise e Desenvolvimento de Sistemas, mas tenho anos de experiência com <strong>virtualização</strong>, <strong>infraestrutura de redes</strong> e suporte técnico.</p>
+                <p>Além da TI, tenho conhecimentos em eletrônica, que uso como hobby e ferramenta para visualizar problemas de forma mais ampla. Acredito que sistemas bem-sucedidos são resultantes de equilíbrio, tendo como pilares a <strong>confiabilidade</strong>, a <strong>simplicidade</strong> e a <strong>segurança</strong>.</p>
+                <p>Atualmente, estou focado em:</p>
+                <div class="tech-stack">
+                    <span><i class="fab fa-golang"></i> Golang</span>
+                    <span><i class="fas fa-brain"></i> IA & LLMs</span>
+                    <span><i class="fas fa-cloud"></i> Cloud</span>
+                    <span><i class="fas fa-server"></i> Self-Hosted</span>
+                    <span><i class="fab fa-docker"></i> Docker</span>
+                    <span><i class="fab fa-linux"></i> Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card"><div class="card-icon"><i class="fas fa-server"></i></div><h3>Soluções Self-Hosted</h3><p><br>Meu mini servidor próprio atuando como um cluster do Proxmox VE, possibilitando a oferta de inúmeros serviços dentro e fora da minha rede local (incluindo este site!)</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-microchip"></i></div><h3>Nask AI</h3><p><br>Plataforma própria de inteligência artificial, baseando-se em soluções de código aberto para pesquisa e desenvolvimento de LLMs personalizados.</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-oil-can"></i></div><h3>Nask Garage</h3><p><br>Aplicação web baseada no LubeLogger para gerenciar inúmeras coisas sobre carros. <br><br>Desde cálculos com despesas de manutenção, consumo de combustível e notificação para manutenções futuras.</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-globe"></i></div><h3>Este Site</h3><p><br>Desenvolvido com base nos princípios de simplicidade, confiabilidade e segurança.<br><br>Roda em HTML5 + CSS com o backend desenvolvido em Go em um container Docker.</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-shield-alt"></i></div><h3>Segurança de Rede</h3><p><br>Rede local protegida com o AdGuard Home, um DNS sinkhole que não somente bloqueia anúncios chatos, mas também protege a conexão contra sites maliciosos e suspeitos.<br><br>Também auxilia na privacidade da rede com o uso de criptografia (DNS-over-HTTPS).</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-network-wired"></i></div><h3>VPN</h3><p><br>Solução auto-hospedada de VPN para acesso à rede local de qualquer lugar de forma segura.<br><br> Graças ao recurso Exit Node do Tailscale, é possível rotear todo o trafégo de rede onde quer que eu esteja para a minha rede de casa.</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-car-battery"></i></div><h3>Arduino EEC</h3><p><br>Utilização do Arduino como uma interface para comunicação para o protocolo DCL, usada em ECUs de veículos da Ford até o final dos anos 90.<br><br> Ainda em desenvolvimento, o objetivo é obter de dados de diagnóstico e funcionamento do veículo.</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-temperature-high"></i></div><h3>Arduino DHT</h3><p><br>Utilizo para o hub de automação residencial da minha casa, um sensor de temperatura e umidade DHT11, ligado em um Arduino Mega que repassa as condições do ambiente via interface serial diretamente para a VM do Home Assistant que possuo no cluster do Proxmox.<br><br>Essa integração permite automatizar várias funções de climatização, junto aos condicionadores de ar dentro de casa</p></div>
+                <div class="project-card"><div class="card-icon"><i class="fas fa-laptop-code"></i></div><h3>Chorumebook</h3><p><br>Das minhas experiências malucas com o ChromeOS em um Samsung Chromebook 3, modifiquei o firmware do meu Chromebook para uma implementação UEFI de código aberto para permitir a instalação do Windows e distros Linux.<br><br>Obtive um laptop que apesar do hardware bastante modesto, proporciona conectividade robusta (Wi-Fi 5) com mais de 12 horas de bateria. Um Thin Client portátil.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificacoes" class="content-section">
+        <div class="container">
+            <h2 class="section-title">Certificações</h2>
+            <p style="text-align: center; margin-bottom: 30px; font-style: italic; color: #a0a0a0;">
+                    -
+            </p>
+            
+            <div class="download-section">
+                <a href="files/CurriculoJoao.pdf" download="Joao_Figueiro_CV.pdf" class="btn-linktree" style="width: auto; padding: 15px 40px; font-size: 1.1rem; background: rgba(13, 183, 237, 0.15); border: 1px solid var(--accent);">
+                    <i class="fas fa-file-pdf" style="margin-right: 10px;"></i> Currículo
+                </a>
+            </div>
+
+            <div class="projects-grid">
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Google Cloud Computing Foundations</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Google</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">Em progresso</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Modern AI</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Cisco</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Projetos de Sistemas de TI</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Fundação Bradesco</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Linguagem de Programação Python</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Fundação Bradesco</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Soluções de IA no GitHub</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Fundação Bradesco/Microsoft</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Fundamentos de IA no Azure</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Fundação Bradesco/Microsoft</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Treinamento de Montagem de Notebooks Avell</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Avell</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2025</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>LGPD - Privacidade e Proteção de Dados</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">SENAI</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2021</span>
+                </div>
+
+               <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Montagem e Manutenção de Computadores</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">SEG</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2021</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Elétrica Automotiva</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">FT Education</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2021</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Mecânica Automotiva</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">SENAI</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2021</span>
+                </div> 
+
+                 <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Técnico de Redes e Aplicações CFTV IP</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Intelbras</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2019</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Introduction to IoT</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Cisco</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2019</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Cybersecurity Essentials</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Cisco</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2019</span>
+                </div>
+
+                <div class="project-card" style="text-align: center;">
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Windows Server Administration Fundamentals</h3>
+                    <p style="color: #a0a0a0; margin-bottom: 10px;">Microsoft</p>
+                    <span style="background: rgba(13,183,237,0.1); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: var(--accent);">2018</span>
+                </div>               
+            </div>
+        </div>
+    </section>
+
+    <footer><p>&copy; 2026 João Figueiró. Powered by Self-Hosted Hardware</p></footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger'); const navLinks = document.querySelector('.nav-links');
+        if(hamburger) { hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); }); }
+        document.querySelectorAll('.nav-links li a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); }); });
+        window.addEventListener('scroll', () => { const navbar = document.querySelector('.navbar'); if (window.scrollY > 50) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); } });
+        const typewriterElement = document.getElementById('typewriter'); const phrases = ["> Construtor de engenhocas, gearhead e maluco das informática_"]; let phraseIndex = 0; let charIndex = 0;
+        function typeWriter() { if (typewriterElement) { const currentPhrase = phrases[phraseIndex]; if (charIndex < currentPhrase.length) { typewriterElement.textContent += currentPhrase.charAt(charIndex); charIndex++; setTimeout(typeWriter, 100); } } } setTimeout(typeWriter, 500);
+    </script>
+</body>
+</html>

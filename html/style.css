@@ -1,0 +1,260 @@
+/* =========================================
+   RESET & VARIÁVEIS
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Open Sans', sans-serif; scroll-behavior: smooth; }
+:root { 
+    --bg-color: #0d0d12; 
+    /* CARD BG agora é semi-transparente para o efeito glass */
+    --card-bg: rgba(30, 30, 30, 0.6); 
+    --text-primary: #e0e0e0; 
+    --text-secondary: #a0a0a0; 
+    --accent: #0db7ed; 
+}
+body { background-color: var(--bg-color); color: var(--text-primary); overflow-x: hidden; }
+
+/* =========================================
+   MENU SUPERIOR
+   ========================================= */
+.navbar { position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 9999; opacity: 0; pointer-events: none; transform: translateY(-20px); background: transparent; transition: all 0.4s ease; }
+.navbar.scrolled { opacity: 1; pointer-events: auto; transform: translateY(0); background: rgba(13, 13, 18, 0.9); backdrop-filter: blur(10px); padding: 15px 50px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+.logo { font-weight: 800; font-size: 1.5rem; color: var(--text-primary); letter-spacing: 2px; }
+.nav-links { list-style: none; display: flex; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--text-secondary); font-weight: 600; font-size: 0.9rem; transition: 0.3s; position: relative; }
+.nav-links a:hover { color: var(--accent); }
+.hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: white; }
+
+/* =========================================
+   SEÇÃO 1: HERO
+   ========================================= */
+/* Removemos o fundo gradiente daqui para ver as estrelas fixas */
+.hero { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; background: transparent; padding: 20px; position: relative; overflow: hidden; }
+
+/* --- CONSTELAÇÃO --- */
+.constellation-wrapper {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; pointer-events: none; opacity: 0.4;
+    animation: floatConstellation 60s ease-in-out infinite;
+}
+@keyframes floatConstellation {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.1) translate(-20px, -20px); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+/* --- ESTRELAS --- */
+#stars {
+  width: 1px; height: 1px; background: transparent; z-index: 0;
+  animation: animStar 100s linear infinite;
+  box-shadow: 
+    100px 200px #FFF, 400px 500px #FFF, 800px 100px #FFF, 1200px 600px #FFF, 1600px 300px #FFF,
+    200px 800px #FFF, 600px 1200px #FFF, 1000px 400px #FFF, 1400px 900px #FFF, 1800px 100px #FFF,
+    150px 1100px #FFF, 550px 150px #FFF, 950px 750px #FFF, 1350px 250px #FFF, 1750px 850px #FFF,
+    300px 1400px #FFF, 700px 300px #FFF, 1100px 1100px #FFF, 1500px 500px #FFF, 1900px 1300px #FFF,
+    50px 400px #FFF, 450px 1300px #FFF, 850px 200px #FFF, 1250px 1000px #FFF, 1650px 50px #FFF,
+    250px 950px #FFF, 650px 50px #FFF, 1050px 800px #FFF, 1450px 1200px #FFF, 1850px 400px #FFF,
+    350px 600px #FFF, 750px 1400px #FFF, 1150px 300px #FFF, 1550px 1100px #FFF, 1950px 200px #FFF,
+    120px 1300px #FFF, 520px 220px #FFF, 920px 920px #FFF, 1320px 420px #FFF, 1720px 1120px #FFF,
+    220px 520px #FFF, 620px 1220px #FFF, 1020px 20px #FFF, 1420px 720px #FFF, 1820px 1420px #FFF;
+}
+#stars2 {
+  width: 2px; height: 2px; background: transparent; z-index: 0; opacity: 0.8;
+  animation: animStar 150s linear infinite;
+  box-shadow: 
+    300px 300px #FFF, 900px 800px #FFF, 1500px 200px #FFF, 200px 1200px #FFF, 800px 1600px #FFF,
+    1300px 500px #FFF, 500px 900px #FFF, 1100px 100px #FFF, 1700px 1100px #FFF, 400px 1500px #FFF,
+    1000px 600px #FFF, 1600px 1300px #FFF, 100px 500px #FFF, 700px 1000px #FFF, 1400px 300px #FFF,
+    600px 1400px #FFF, 1200px 400px #FFF, 1800px 900px #FFF, 250px 100px #FFF, 850px 1300px #FFF,
+    1450px 700px #FFF, 350px 1700px #FFF, 950px 200px #FFF, 1550px 1500px #FFF, 550px 600px #FFF;
+}
+#stars3 {
+  width: 3px; height: 3px; background: transparent; z-index: 0; opacity: 0.6;
+  animation: animStar 200s linear infinite;
+  box-shadow: 
+    600px 600px #FFF, 1400px 1200px #FFF, 200px 200px #FFF, 1800px 800px #FFF,
+    1000px 1000px #FFF, 400px 1600px #FFF, 1200px 200px #FFF, 1600px 1400px #FFF,
+    800px 400px #FFF, 2000px 1000px #FFF;
+}
+@keyframes animStar { from { transform: translateY(0px); } to { transform: translateY(-2000px); } }
+
+/* CONTEÚDO HERO */
+.hero-content { max-width: 600px; width: 100%; animation: fadeIn 1s ease-in-out; display: flex; flex-direction: column; align-items: center; z-index: 10; position: relative; }
+.avatar-container { position: relative; width: 150px; margin: 0 auto 20px; }
+.avatar { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--card-bg); object-fit: cover; box-shadow: 0 0 20px rgba(13, 183, 237, 0.4); }
+.hero h1 { font-size: 2.5rem; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.terminal-style { font-family: 'Fira Code', monospace; font-weight: 600; color: var(--accent); letter-spacing: 1px; display: inline-block; margin-bottom: 30px; text-shadow: 0 0 10px rgba(13, 183, 237, 0.3); }
+.cursor { display: inline-block; margin-left: 5px; font-weight: 100; animation: blink 1s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.hero-buttons-stack { display: flex; flex-direction: column; gap: 15px; width: 100%; margin-bottom: 25px; }
+.btn-linktree { background: rgba(30, 30, 30, 0.8); backdrop-filter: blur(5px); color: var(--text-primary); padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.05); }
+.btn-linktree:hover { transform: translateY(-3px); background: #2a2a2a; border-color: var(--accent); }
+.btn-app { background: rgba(13, 183, 237, 0.1); border-color: rgba(255, 255, 255, 0.1); }
+.btn-app:hover { background: rgba(13, 183, 237, 0.2); border-color: var(--accent); box-shadow: 0 0 15px rgba(13, 183, 237, 0.2); }
+.hero-social-circles { display: flex; justify-content: center; gap: 15px; width: 100%; }
+.btn-circle { display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 2px solid var(--accent); color: var(--text-primary); font-size: 1.3rem; text-decoration: none; transition: all 0.3s ease; }
+.btn-circle:hover { background: var(--accent); color: #fff; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(13, 183, 237, 0.3); }
+.scroll-down-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: var(--accent); opacity: 0.7; z-index: 5; animation: bounceArrow 2s infinite; }
+@keyframes bounceArrow { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-15px); } 60% { transform: translateX(-50%) translateY(-7px); } }
+
+/* =========================================
+   RESTO DO SITE & FORMATAÇÃO
+   ========================================= */
+.content-section { padding: 100px 20px; min-height: 80vh; }
+.container { max-width: 1000px; margin: 0 auto; }
+.section-title { font-size: 2rem; margin-bottom: 50px; text-align: center; position: relative; }
+.section-title::after { content: ''; width: 60px; height: 3px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+/* SOBRE MIM (CENTRALIZADO & GLASS) */
+.sobre-grid { display: flex; justify-content: center; align-items: center; width: 100%; }
+.sobre-text {
+    width: 100%; max-width: 800px; margin: 0 auto;
+    text-align: justify; text-align-last: center; line-height: 1.8; color: var(--text-primary);
+    
+    /* Efeito Glassmorphism aqui */
+    background: rgba(30, 30, 30, 0.5); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    padding: 40px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sobre-text p { margin-bottom: 20px; }
+.sobre-text strong { color: var(--accent); font-weight: 700; }
+
+/* Ícones Tech */
+.tech-stack { margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.tech-stack span { background: rgba(30,30,30,0.6); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; border: 1px solid #333; }
+
+/* Projetos Grid */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.project-card { 
+    /* Efeito Glassmorphism aqui também */
+    background: var(--card-bg); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    padding: 30px; border-radius: 15px; transition: 0.3s; border: 1px solid transparent; 
+}
+.project-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.card-icon { font-size: 2rem; color: var(--accent); margin-bottom: 20px; }
+
+/* =========================================
+   NOVA SEÇÃO: BUILD LIST / RETROFIT (COM BLUR INDIVIDUAL)
+   ========================================= */
+.retrofit-container {
+    width: 100%;
+    /* Removemos o fundo do container pai para focar nos filhos */
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.retrofit-grid {
+    display: grid;
+    /* Colunas responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px;
+}
+
+.retrofit-category {
+    /* AQUI ESTÁ A MÁGICA: Cada lista vira um cartão com Blur */
+    background: rgba(30, 30, 30, 0.288); /* Fundo semi-transparente */
+    backdrop-filter: blur(10px);        /* Desfoque do fundo */
+    -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px; /* Espaço interno */
+    
+    transition: transform 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+/* Efeito sutil de levantar ao passar o mouse na categoria inteira */
+.retrofit-category:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.retrofit-category h3 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.retrofit-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.retrofit-category li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.retrofit-category li i {
+    color: #00ff00; /* Check verde */
+    margin-top: 4px;
+    font-size: 0.8rem;
+    flex-shrink: 0; /* Impede o ícone de amassar se o texto for longo */
+}
+
+/* =========================================
+   NOVOS ESTILOS: IMAGENS E BOTÕES EXTRAS
+   ========================================= */
+
+/* Container para fotos de destaque (Carro/Setup) */
+.featured-image-container {
+    width: 100%;
+    max-width: 900px; /* Largura máxima para não estourar em telas grandes */
+    margin: 0 auto 40px auto; /* Centraliza e dá espaço embaixo */
+    border-radius: 15px;
+    overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra elegante */
+    
+    /* Efeito de revelar ao carregar (opcional, mas fica chique) */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.featured-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.featured-image-container:hover img {
+    transform: scale(1.02); /* Leve zoom ao passar o mouse */
+}
+
+/* Ajuste para botão de download centralizado */
+.download-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(13,13,18,0.8); backdrop-filter: blur(10px); }
+
+/* Mobile */
+@media (max-width: 768px) { 
+    .navbar { padding: 20px; background: rgba(13,13,18,0.95); } 
+    .nav-links { position: absolute; top: 70px; right: 0; width: 100%; background: #1e1e1e; flex-direction: column; align-items: center; padding: 40px 0; transform: translateY(-150%); transition: 0.4s; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 9998; } 
+    .nav-links.active { transform: translateY(0); } 
+    .hamburger { display: block; } 
+    .hero h1 { font-size: 2rem; } 
+    .sobre-text { padding: 20px; text-align: left; } 
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
