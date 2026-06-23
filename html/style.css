@@ -1,0 +1,604 @@
+/* ==========================================================================
+   jvfigueiro.com - Global Stylesheet
+   ========================================================================== */
+
+/* Base & Typography */
+body {
+    font-family: 'Open Sans', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Accent Colors - Adaptive Purple */
+:root {
+    --accent-color: #5a32a3; /* Deep corporate purple for light mode */
+}
+[data-bs-theme="dark"] {
+    --accent-color: #a855f7; /* Electric purple for dark/terminal mode */
+}
+
+.text-accent { 
+    color: var(--accent-color) !important; 
+}
+
+/* Navigation Bar */
+.navbar-brand { 
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    letter-spacing: -0.5px; 
+}
+.nav-link {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0 10px;
+    color: var(--bs-body-color);
+    transition: color 0.2s ease;
+}
+.nav-link:hover, .nav-link.active { 
+    color: var(--accent-color); 
+}
+.nav-link.active { 
+    border-bottom: 2px solid var(--accent-color); 
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--bs-body-color);
+    font-size: 1.2rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.theme-toggle:hover { 
+    color: var(--accent-color); 
+    transform: rotate(15deg);
+}
+
+/* Custom Typography & Layout Elements */
+.hero-subtitle {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+.subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bs-secondary-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+h1 { 
+    font-size: 5rem; 
+    font-weight: 800; 
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+.title-divider {
+    width: 80px;
+    height: 5px;
+    background-color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+/* Custom Buttons (Hero / Action components) */
+.btn-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.4rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.btn-primary-custom {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    border: 1px solid var(--accent-color);
+}
+.btn-primary-custom:hover {
+    background-color: transparent;
+    color: var(--accent-color) !important;
+}
+.btn-outline-custom {
+    background-color: transparent;
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color);
+}
+.btn-outline-custom:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Core Competencies / Areas Section */
+.areas-section { 
+    margin-top: 4rem; 
+}
+.areas-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--bs-secondary-color);
+    margin-bottom: 1.5rem;
+}
+.area-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.area-item i {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--bs-secondary-color);
+    transition: color 0.2s ease;
+}
+.area-item:hover, .area-item:hover i { 
+    color: var(--accent-color); 
+}
+
+/* Projects Cards Grid */
+.card { 
+    transition: border-color 0.3s ease, transform 0.2s ease; 
+}
+.card:hover { 
+    border-color: var(--accent-color) !important; 
+    transform: translateY(-5px);
+}
+
+/* Footer / Social Media Round Buttons */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+    font-size: 1.2rem;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.social-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff !important;
+    border-color: var(--accent-color);
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.35);
+}
+
+.hover-accent:hover { 
+    color: var(--accent-color) !important; 
+}
+
+/* Typewriter Cursor */
+.cursor {
+    animation: blink 0.8s infinite;
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-left: 2px;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero-main {
+    min-height: calc(100vh - 100px);
+}
+
+.profile-avatar-container {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--bs-border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    margin: 0 auto;
+    background-color: var(--bs-body-bg);
+}
+.profile-avatar-container:hover {
+    transform: scale(1.02);
+    border-color: var(--accent-color);
+}
+.profile-avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spec-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.spec-list li {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--bs-border-color);
+    font-size: 0.9rem;
+}
+.spec-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.spec-label {
+    font-weight: 600;
+    color: var(--bs-body-color);
+    margin-right: 0.5rem;
+}
+.spec-value {
+    color: var(--bs-secondary-color);
+}
+
+/* ==========================================================================
+   Efeitos Visuais Sutis
+   ========================================================================== */
+
+/* Fade-in de entrada da página (suaviza a navegação entre páginas) */
+body {
+    opacity: 0;
+}
+body.page-loaded {
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+
+/* Fade-in on scroll (genérico, aplicado via JS) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    body { opacity: 1; transition: none; }
+    .reveal-on-scroll { opacity: 1; transform: none; transition: none; }
+}
+
+/* Parallax leve no avatar da home */
+.profile-avatar-container {
+    will-change: transform;
+}
+
+/* Hover refinado nos cards de projeto (página Projetos) */
+.project-list-item {
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+.project-list-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+[data-bs-theme="dark"] .project-list-item:hover {
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.08);
+}
+
+.project-icon-box {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.project-list-item:hover .project-icon-box {
+    transform: scale(1.08) rotate(-4deg);
+    background-color: rgba(90, 50, 163, 0.18);
+}
+
+/* Hover refinado nos cards de especificações (UltimateLab, GarageX5) */
+.card.bg-transparent {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card.bg-transparent:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+[data-bs-theme="dark"] .card.bg-transparent:hover {
+    box-shadow: 0 8px 24px rgba(168, 85, 247, 0.1);
+}
+
+/* Botões com leve elevação no hover, além da troca de cor já existente */
+.btn-custom {
+    transition: all 0.2s ease, transform 0.2s ease;
+}
+.btn-custom:hover {
+    transform: translateY(-2px);
+}
+
+/* Timeline da página Sobre: leve destaque do marcador no hover do bloco pai */
+.border-start.border-2 > div:hover > div[class*="rounded-circle"] {
+    transform: scale(1.3);
+}
+.border-start.border-2 > div {
+    transition: transform 0.2s ease;
+}
+.border-start.border-2 > div > div[class*="rounded-circle"] {
+    transition: transform 0.25s ease;
+}
+
+/* ==========================================================================
+   Estilos de Conteúdo (usados em GarageX5 e páginas similares)
+   ========================================================================== */
+
+.content-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color);
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+}
+
+.featured-image-container {
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.featured-image-container img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.featured-image-container:hover img {
+    transform: scale(1.03);
+}
+
+/* Legenda sobreposta na parte inferior de uma imagem dentro de .featured-image-container */
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 1.25rem 0.9rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+    color: #f1f1f1;
+    font-size: 0.88rem;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    pointer-events: none;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-card {
+    background-color: rgba(128, 128, 128, 0.04);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 1.75rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.project-card .card-icon {
+    font-size: 1.6rem;
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease;
+}
+.project-card:hover .card-icon {
+    transform: scale(1.1) rotate(-4deg);
+}
+.project-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.retrofit-container {
+    margin-top: 1rem;
+}
+.retrofit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.retrofit-category {
+    background-color: rgba(128, 128, 128, 0.04);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.retrofit-category:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+}
+.retrofit-category h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--bs-body-color);
+}
+.retrofit-category h3 i {
+    color: var(--accent-color);
+}
+.retrofit-category ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.retrofit-category li {
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: var(--bs-secondary-color);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.retrofit-category li i {
+    color: var(--accent-color);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.btn-linktree {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 2rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.btn-linktree:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+    color: #fff;
+}
+
+.sobre-text {
+    padding: 1.75rem;
+    border-radius: 0.75rem;
+    background-color: rgba(128, 128, 128, 0.06);
+    border: 1px solid var(--bs-border-color);
+    backdrop-filter: blur(5px);
+}
+.sobre-text p {
+    color: var(--bs-secondary-color);
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.terminal-style {
+    font-family: 'Courier New', monospace;
+}
+
+/* ==========================================================================
+   Grade de Serviços (página UltimateLab)
+   ========================================================================== */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.service-category {
+    background-color: rgba(128, 128, 128, 0.04);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.service-category:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+[data-bs-theme="dark"] .service-category:hover {
+    box-shadow: 0 8px 24px rgba(168, 85, 247, 0.1);
+}
+
+.service-category h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--bs-body-color);
+}
+.service-category h3 i {
+    color: var(--accent-color);
+}
+
+.service-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.service-list li {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed var(--bs-border-color);
+}
+.service-list li:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.service-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--bs-body-color);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.service-list p {
+    font-size: 0.85rem;
+    color: var(--bs-secondary-color);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.node-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 1rem;
+    background-color: rgba(90, 50, 163, 0.1);
+    color: var(--accent-color);
+    border: 1px solid rgba(90, 50, 163, 0.25);
+    white-space: nowrap;
+}
+[data-bs-theme="dark"] .node-badge {
+    background-color: rgba(168, 85, 247, 0.12);
+    border-color: rgba(168, 85, 247, 0.3);
+}

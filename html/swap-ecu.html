@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade de ECU Ford | João Figueiró</title>
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css?=v2">
+
+    <style>
+        .writeup-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .writeup-section {
+            margin-bottom: 3rem;
+        }
+        .writeup-section h3 {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .writeup-section h3 i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        .writeup-section p {
+            color: var(--bs-secondary-color);
+            line-height: 1.85;
+            font-size: 1.02rem;
+            margin-bottom: 1.1rem;
+        }
+        .writeup-section p strong {
+            color: var(--bs-body-color);
+        }
+        .callout-box {
+            background-color: rgba(90, 50, 163, 0.06);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .callout-box.success-box {
+            background-color: rgba(40, 167, 69, 0.06);
+            border-left-color: #28a745;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .option-card {
+            background-color: rgba(128, 128, 128, 0.04);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 0.6rem;
+            padding: 1rem 1.25rem;
+        }
+        .option-card h5 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--bs-body-color);
+        }
+        .option-card p {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+            color: var(--bs-secondary-color);
+            line-height: 1.6;
+        }
+        .option-card.discarded {
+            opacity: 0.7;
+        }
+        .option-card.discarded h5::before {
+            content: "✕ ";
+            color: #dc3545;
+        }
+        code.inline-code {
+            background-color: rgba(128, 128, 128, 0.12);
+            padding: 0.15rem 0.45rem;
+            border-radius: 0.3rem;
+            font-size: 0.88em;
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pt-4 pb-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">João Figueiró<span class="text-accent">.</span></a>
+
+            <div class="mx-auto d-none d-lg-flex align-items-center gap-2">
+                <a class="nav-link" href="index.html">Início</a>
+                <a class="nav-link active" href="projetos.html">Projetos</a>
+                <a class="nav-link" href="ultimatelab.html">Laboratório</a>
+                <a class="nav-link" href="sobre.html">Sobre</a>
+                <a class="nav-link" href="contato.html">Contato</a>
+            </div>
+
+            <button id="themeToggleBtn" class="theme-toggle" aria-label="Alternar Tema">
+                <i class="fas fa-circle-half-stroke"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5 mt-4" style="max-width: 800px;">
+
+        <div class="text-center mb-4">
+            <a href="projetos.html" class="text-secondary text-decoration-none fs-6 mb-3 d-inline-block">
+                <i class="fas fa-arrow-left me-1"></i> Voltar para Projetos
+            </a>
+            <h2 class="mb-3" style="font-weight: 800; letter-spacing: -1px; font-size: 2.3rem;">
+                Upgrade de ECU Ford
+            </h2>
+            <p class="text-secondary fs-5 mx-auto" style="max-width: 650px;">
+                Como um projeto de engenharia reversa de ECU que não deu certo se tornou, meses depois, a base para uma telemetria do motor em tempo real — e por tabela, um carro que anda melhor do que nunca.
+            </p>
+        </div>
+
+        <figure class="featured-image-container">
+                <img src="images/eec-v.jpg" alt="Placa principal da ECU EEC-V" onerror="this.style.display='none'">
+                <figcaption class="image-caption">Placa principal da ECU EEC-V</figcaption>
+        </figure>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-microchip"></i> O objetivo nunca foi performance</h3>
+            <p>
+                Antes de qualquer coisa, vale deixar claro o que motivou esse projeto inteiro — porque não é o que normalmente se espera de um trabalho com a ECU (Engine Control Unit, ou Unidade de Controle do Motor em português) de um carro. O objetivo nunca foi extrair mais potência ou torque. Era entender e capturar a <strong>telemetria de funcionamento do motor</strong>, com um fim bem específico: alimentar rotinas de <strong>monitoramento ativo e automação preditiva</strong> no <a href="ultimatelab.html" class="text-accent text-decoration-none">Home Assistant do UltimateLab</a>, capazes de disparar alertas em caso de anomalias antes que elas se tornassem problemas mecânicos reais.
+            </p>
+            <p>
+                A primeira tentativa de chegar a esses dados foi usar um Arduino junto de um módulo transceptor RS-485 para decodificar o protocolo proprietário DCL (Data Communication Link), usado pelos módulos de injeção EEC-IV da Ford até meados dos anos 90, e ler diretamente da ECU original do Escort.
+            </p>
+            <p>
+                O problema apareceu rápido: dentro da família de módulos EEC-IV, cada geração de ECU usada em diferentes modelos tinha seu próprio "dialeto" do protocolo. E a regra parecia ser inversa do que se esperava — quanto <strong>mais nova era a variante da ECU, mais obscura e mal documentada</strong> ela estava. Documentos internos da Ford, encontrados em repositórios no GitHub, ajudavam a montar uma base teórica sobre como cada estratégia funcionava, mas nunca chegavam a ser uma fonte assertiva o suficiente para decodificar com confiança o que estava sendo lido.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-route"></i> Mudança de rota: se não posso ler, vamos trocar!</h3>
+            <p>
+                Diante da falta de documentação confiável, o foco do projeto mudou: em vez de decodificar a EEC-IV, a pergunta virou <strong>"o que substitui essa ECU por completo?"</strong> — abrindo a porta para soluções de ECU programável, populares no meio de preparação automotiva.
+            </p>
+            <p>
+                Três opções entraram na mesa de avaliação:
+            </p>
+            <div class="options-grid">
+                <div class="option-card discarded">
+                    <h5>Speeduino</h5>
+                    <p>ECU programável open-source, custo acessível, mas ainda exigiria meses de acerto de mapas e uma curva de aprendizado significativa.</p>
+                </div>
+                <div class="option-card discarded">
+                    <h5>MegaSquirt</h5>
+                    <p>Plataforma consolidada no mercado de preparação, com boa comunidade — mas com as mesmas limitações de tempo e custo do Speeduino.</p>
+                </div>
+                <div class="option-card discarded">
+                    <h5>FuelTech</h5>
+                    <p>Solução nacional de referência e robusta — porém a mais cara das três cogitadas, fora do orçamento disponível para o projeto no momento.</p>
+                </div>
+            </div>
+            <p>
+                Além de que as três opções compartilhavam os mesmos problemas de fundo: custo elevado e meses de carro parado para mapeamento e acertos. Como eu uso o carro diariamente, seria complicado ficar sem ele. Mas havia um problema mais fundamental para o que eu realmente queria: ECUs programáveis têm um controle bem mais simples sobre funções de conforto, como o atuador de marcha lenta — o que significaria perder refinamento no dia a dia de um carro de uso diário e possívelmente um aumento no consumo de combustível. Fora que nenhuma delas resolveria o objetivo original, que era obter telemetria robusta de um sistema com o comportamento previsível e maduro de uma ECU de fábrica, não de uma plataforma genérica que eu mesmo teria que mapear do zero.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-magnifying-glass"></i> A descoberta: alguém já tinha resolvido isso</h3>
+            <p>
+                Foi pesquisando alternativas que apareceu o caminho que de fato resolveria o problema sem as desvantagens das ECUs programáveis: substituir a EEC-IV por uma <strong>EEC-V</strong> — a geração seguinte da própria Ford, nativamente compatível com <strong>OBD2</strong> (SAE J1850 PWM), obrigatório a partir de 1996 nos EUA, e ainda capaz de manter o refinamento original de fábrica em funções como a marcha lenta.
+            </p>
+            <p>
+                A pesquisa levou até a <strong>Mecânica Scadufax</strong>, em Sorocaba, onde o proprietário, <strong>Alexandre</strong>, já havia realizado esse mesmo swap no próprio carro.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-flag-checkered"></i> O ouro da missão: uma Ford Courier que aprendeu a controlar um motor Zetec 1.8</h3>
+            
+            <figure class="featured-image-container">
+                <img src="images/ecu-2.jpg" alt="Já viram um Ford Escort se identificar como um Ford Fiesta ou Mazda 121?" onerror="this.parentElement.style.display='none'">
+                <figcaption class="image-caption">Já viram um Ford Escort se identificar como um Ford Fiesta ou Mazda 121?</figcaption>
+            </figure>
+
+            <p>
+                A parte mais interessante dessa história não é só a peça em si, mas de onde ela veio. O Alexandre tem um Ford Fiesta MK4 que passou por um swap de motor para o <strong>Zetec-E 1.8 16V</strong> — o mesmo bloco usado no Escort — e que ele leva para track days no <strong>Autódromo de Interlagos</strong>. Para controlar esse motor, ele usa uma <strong>EEC-V originalmente projetada para a Ford Courier 1.4 16V Zetec-S</strong>.
+            </p>
+            <p>
+                A descoberta dele, e que se tornou o verdadeiro valor dessa busca: a EEC-V do Zetec-S 1.4 consegue gerenciar perfeitamente um bloco 1.8, sem nenhuma adaptação eletrônica adicional. O módulo que ele me vendeu era exatamente o mesmo que ele usava nesse Fiesta de track day — testado em pista, não apenas em teoria.
+            </p>
+            <div class="callout-box">
+                <p>
+                    Muito além da engenharia reversa ou da troca de peça em si, a história por trás desse módulo específico — de uma Courier de fábrica, para um Fiesta de track day em Interlagos, e no fim, indo para o meu Escort — é o tipo de detalhe que só aparece quando se encontra a pessoa certa.
+                </p>
+            </div>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-wrench"></i> A instalação: 1.200 km de distância e um upgrade de hardware</h3>
+            <p>
+                O módulo já estava testado — mas a distância onde eu estava (em Santa Maria, no Rio Grande do Sul), até Sorocaba, é de quase <strong>1.200 km de distância</strong>. Seria inviável levar o carro até lá, então a solução foi adquirir o módulo e fazer toda a instalação, em casa, sem apoio presencial de quem fez a configuração original.
+            </p>
+            <p>
+                O conhecimento acumulado durante toda a fase anterior — tentando ler a EEC-IV via protocolo DCL - foi exatamente o que permitiu entender fiação, pinagem e compatibilidade entre os dois sistemas o suficiente para conduzir essa instalação sozinho.
+            </p>
+            <p>
+                Em termos de hardware, essa troca também não deixou de ser também um upgrade silencioso: a EEC-IV original rodava em um processador <strong>Intel 8061 com 256KB de RAM</strong>, enquanto a EEC-V que assumiu o lugar dela usa um <strong>Intel 8065 com 2MB de RAM</strong> — praticamente oito vezes mais memória disponível para o controle do motor.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-satellite-dish"></i> O objetivo alcançado: telemetria em tempo real</h3>
+            
+            <figure class="featured-image-container">
+                <img src="images/ecu-3.jpg" alt="Uma das idéias que conseguimos aplicar tendo agora os dados de telemetria do motor, são os alertas push no celular, muito úteis para prever desastres." onerror="this.parentElement.style.display='none'">
+                <figcaption class="image-caption">Uma das idéias que conseguimos aplicar tendo agora os dados de telemetria do motor, são os alertas push no celular, muito úteis para prever desastres.</figcaption>
+            </figure>            
+            <p>
+                Com a EEC-V instalada e estável, o objetivo original do projeto finalmente foi alcançado. Hoje, a cadeia de telemetria funciona de ponta a ponta: um scanner <strong>OBD2</strong> lê os dados da ECU e os envia para meu celular via aplicativo <strong>Torque Pro</strong>, que por sua vez os repassa para o <strong>Home Assistant</strong> no UltimateLab via rede 5G.
+            </p>
+            <p>
+                Os dados críticos do motor — temperatura, rotação, correções de mistura, entre outros — alimentam rotinas de monitoramento ativo, com <strong>alertas push instantâneos</strong> disparados em caso de qualquer anomalia. Esse é exatamente o sistema de automação preditiva que motivou todo o projeto desde a primeira tentativa, ainda na EEC-IV original.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-gauge-high"></i> Os ganhos que vieram de carona</h3>
+            <p>
+                E como dito no início deste artigo, indo na contramão do que normalmente se esperaria de um projeto envolvendo a injeção eletrônica de um carro, o objetivo aqui não era extrair desempenho — mas a troca trouxe por tabela uma série de melhorias reais de dirigibilidade, fruto do aprendizado adaptativo muito mais sofisticado da EEC-V em relação à EEC-IV original:
+            </p>
+            <ul style="color: var(--bs-secondary-color); line-height: 1.85; font-size: 1.02rem; padding-left: 1.5rem;">
+                <li class="mb-2">O carro passou a funcionar muito melhor com a <strong>gasolina E30</strong>, graças à capacidade de aprendizado adaptativo da nova ECU;</li>
+                <li class="mb-2">O controle térmico do motor ficou mais robusto: o acionamento do eletroventilador agora é feito pela própria ECU, mantendo o termointerruptor (o famoso cebolão) como redundância;</li>
+                <li class="mb-2">O controle de marcha lenta ao acionar o compressor do ar-condicionado é muito mais rápido, assim como o desacoplamento da embreagem magnética ao pisar fundo no acelerador;</li>
+                <li class="mb-2">O corte de giro subiu de <strong>6.750 para 7.000 RPM</strong>, e o motor sobe a rotação de forma muito mais ágil, tornando a condução perceptivelmente mais esperta;</li>
+                <li class="mb-2">Correções de marcha lenta causadas pela variação de pressão da direção hidráulica praticamente desapareceram.</li>
+            </ul>
+            <p>
+                Uma descoberta adicional, que o próprio Alexandre já havia constatado em seu Fiesta MK4: o aprendizado adaptativo da EEC-V é tão eficiente que o carro roda tranquilamente até com <strong>E85</strong> (85% etanol, 15% gasolina) — bem além do que normalmente se esperaria de uma ECU de fábrica dessa geração.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-road"></i> O que ficou dessa jornada</h3>
+            <p>
+                Esse projeto não é uma história de sucesso linear, e é exatamente por isso que julgo interessante em compartilhar aqui. A tentativa original de decodificar a EEC-IV via protocolo DCL não funcionou como eu planejava — MAS também não foi tempo perdido. Na verdade, foi o que construiu o entendimento necessário sobre a arquitetura de injeção Ford o suficiente para avaliar alternativas com critério real, encontrar quem já tinha resolvido o mesmo problema, e executar a instalação final sozinho, a 1.200 km de distância de qualquer suporte presencial. No fim, o projeto entregou exatamente o que se propôs — telemetria de motor em tempo real — e trouxe, sem ter sido essa a meta, um carro muito mais agradável de dirigir.
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="w-100 border-top py-4 mt-auto">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+            <p class="text-muted mb-3 mb-md-0 fs-6">
+                &copy; <span id="currentYear"></span> João Figueiró. Todos os direitos reservados.
+            </p>
+
+            <div class="d-flex">
+                <a href="https://instagram.com/jvfigueiro" target="_blank" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/figueiro" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/jvfigueiro" target="_blank" class="social-btn" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:contato@jvfigueiro.com" class="social-btn" aria-label="E-mail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

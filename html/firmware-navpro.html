@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizando Central Multimídia com Engenharia Reversa | João Figueiró</title>
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css?=v2">
+
+    <style>
+        .writeup-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .writeup-section {
+            margin-bottom: 3rem;
+        }
+        .writeup-section h3 {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .writeup-section h3 i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+        .writeup-section p {
+            color: var(--bs-secondary-color);
+            line-height: 1.85;
+            font-size: 1.02rem;
+            margin-bottom: 1.1rem;
+        }
+        .writeup-section p strong {
+            color: var(--bs-body-color);
+        }
+        .callout-box {
+            background-color: rgba(90, 50, 163, 0.06);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 0.5rem;
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .callout-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        .callout-box.warning-box {
+            background-color: rgba(220, 53, 69, 0.06);
+            border-left-color: #dc3545;
+        }
+        code.inline-code {
+            background-color: rgba(128, 128, 128, 0.12);
+            padding: 0.15rem 0.45rem;
+            border-radius: 0.3rem;
+            font-size: 0.88em;
+            color: var(--accent-color);
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.92rem;
+        }
+        .tech-table th, .tech-table td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid var(--bs-border-color);
+            text-align: left;
+        }
+        .tech-table th {
+            color: var(--bs-body-color);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .tech-table td {
+            color: var(--bs-secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg pt-4 pb-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">João Figueiró<span class="text-accent">.</span></a>
+
+            <div class="mx-auto d-none d-lg-flex align-items-center gap-2">
+                <a class="nav-link" href="index.html">Início</a>
+                <a class="nav-link active" href="projetos.html">Projetos</a>
+                <a class="nav-link" href="ultimatelab.html">Laboratório</a>
+                <a class="nav-link" href="sobre.html">Sobre</a>
+                <a class="nav-link" href="contato.html">Contato</a>
+            </div>
+
+            <button id="themeToggleBtn" class="theme-toggle" aria-label="Alternar Tema">
+                <i class="fas fa-circle-half-stroke"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5 mt-4" style="max-width: 800px;">
+
+        <div class="text-center mb-4">
+            <a href="projetos.html" class="text-secondary text-decoration-none fs-6 mb-3 d-inline-block">
+                <i class="fas fa-arrow-left me-1"></i> Voltar para Projetos
+            </a>
+            <h2 class="mb-3" style="font-weight: 800; letter-spacing: -1px; font-size: 2.3rem;">
+                Personalizando Central Multimídia com Engenharia Reversa
+            </h2>
+            <p class="text-secondary fs-5 mx-auto" style="max-width: 650px;">
+                Como uma troca de boot logo virou engenharia reversa de firmware? Conto aqui, um pouco da saga em descobrir um backdoor de fabricante numa central multimídia automotiva white label, e usar isso para replicar - mesmo que em essência - os sistemas multimídias da marca do meu carro.
+            </p>
+        </div>
+
+        <div class="featured-image-container">
+            <img src="images/originallogo.jpeg" alt="Bizarro foi descobrir que o firmware tinha logos de várias marcas, só não tinha a opção para substituir." onerror="this.style.display='none'">
+        </div>
+     
+        <div class="writeup-section">
+            <h3><i class="fas fa-flag"></i> O ponto de partida: eu só queria trocar uma logo!</h3>
+            <p>
+                O objetivo inicial era muito simples, mas o software não colaborava para a coisa ser tão fácil como deveria. Eu queria trocar a imagem de boot da central multimídia do meu carro, pois a que aparecia toda vez que ligava remetia a um produto extremamente genérico. A vítima em questão é uma daquelas centrais multimídias externas. Ela faz apenas o básico (espelhar o celular e ser um monitor para a câmera de ré). É baseada no SoC <strong>Sunplus SPHE8368-U</strong> e roda um sistema bastante enxuto com kernel <strong>Linux 4.9</strong>. Queria colocar uma logo da marca do meu carro (Ford). Nada de idéias sofisticadas, apenas uma imagem diferente na tela de boot.
+            </p>
+            <p>
+                Minha relação com este equipamento já tinha passado por uma "boa" no primeiro dia de uso: eu travei ela KKKKKKKKKKKKKKKK. Enquanto a explorava, descobri que nas configurações havia um menu de desenvolvedor. Na inocência de tentar abrir esse menu, inseri a senha padrão (1234), mas não esperava que simplesmente fazer isso, iria travar o sistema por completo. Em contato com o suporte da Navpro (fabricante do meu modelo), explicando o que havia ocorrido, eles me enviaram o arquivo de firmware oficial (<code class="inline-code">ISPBOOOT.BIN</code>) — que mantive salvo no meu PC desde então para o acaso de precisar no futuro. Esse futuro chegou bem antes do que eu imaginava.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-ban"></i> Tentativas de acesso: MD5, soft brick e frustração</h3>
+            <p>
+                A primeira abordagem foi mais direta: descompilei o firmware, identificamos as partições existentes, fiz as alterações desejadas e recompilei. Parecia muito "fácil" para funcionar de primeira, mas como esperado, não funcionou. O processo de In-System Programming da Sunplus valida um <strong>hash MD5</strong> do pacote completo antes de aceitar a gravação, e qualquer alteração no arquivo invalida essa assinatura.
+            </p>
+            <p>
+                Como não sou de desistir tão facilmente, optei por testar alguns firmwares de outras marcas que tivessem hardware semelhante, por curiosidade técnica. Os resultados variaram entre reinicializações em loop, imagem chuviscada na tela, e a própria central solicitando que um firmware fosse regravado para restabelecer o funcionamento. Nenhum resultado dessas tentativas chegou a ser catastrófico, mas deixou claro que regravação bruta por aqui era um terreno arriscado — e precisávamos de outro caminho de entrada.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-door-open"></i> A descoberta: um backdoor disfarçado de "arquivo não encontrado"</h3>
+            <p>
+                A reviravolta de toda essa aventura veio de um post que encontrei em um <a href="https://www.computerbase.de/forum/threads/bin-datei-bearbeitbar.2211291/#post-29808430" class="text-accent text-decoration-none">fórum alemão</a>, onde um membro queria atingir o mesmo objetivo que eu: trocar a logo do boot. Outro membro nos deu a faca e o queijo para chegarmos no êxito da missão, o arquivo de nome <code class="inline-code">gemn_auto.sh</code>. Basicamente, o fabricante deixou uma "porta aberta" que permite executar scripts armazenados na raiz de qualquer pendrive ou microSD que seja inserido na central. Basta escrever qualquer comando no script e salvar com este nome mágico, que ele é executado silenciosamente com privilégios de root assim que a mídia for inserida. 
+            </p>
+            <p>
+                E o comportamento é discreto por design. Ao inserir a mídia, a central exibe uma mensagem informando que <strong>"nenhum arquivo conhecido foi encontrado"</strong> — só que, por debaixo dos panos, o script já estava silenciosamente sendo executado. A única pista visível é o LED de atividade do pendrive, que pisca por um tempo mesmo sem nenhum arquivo "reconhecido" ter sido aberto. Ao conectar o mesmo pendrive no PC depois, aparece um log descrevendo exatamente qual script rodou, e em que data e hora.
+            </p>
+            <div class="callout-box">
+                <p>
+                    Esse é o detalhe que separa o que é um bug de um backdoor: a interface mente sobre o que está acontecendo, enquanto o sistema executa código arbitrário em segundo plano com privilégios totais.
+                </p>
+            </div>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-terminal"></i> Mapeando o sistema</h3>
+            <p>
+                O <code class="inline-code">gemn_auto.sh</code> deu execução de comandos com privilégios de <strong>root</strong> — mas sem nenhuma interface interativa. Para contornar isso, a estratégia foi usar o próprio pendrive como canal de entrada e saída: comandos do BusyBox (<code class="inline-code">ls</code>, <code class="inline-code">mount</code>, <code class="inline-code">cat</code>) eram embutidos no script, com a saída redirecionada para arquivos <code class="inline-code">.txt</code> gravados de volta no pendrive.
+            </p>
+            <p>
+                Na prática, era um terminal "cego": cada comando exigia editar o script, inserir o pendrive na central, esperar a execução silenciosa, remover, e ler o resultado no PC. Lento, mas suficiente para mapear toda a árvore de diretórios do Linux embarcado e identificar a tabela de partições MTD:
+            </p>
+            <table class="tech-table">
+                <thead>
+                    <tr><th>Tipo</th><th>Sistema de Arquivos</th><th>Partições</th><th>Papel</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Somente leitura</td><td>SquashFS</td><td>rootfs, opt, spapp</td><td>Sistema base e aplicações</td></tr>
+                    <tr><td>Gravável</td><td>YAFFS2</td><td>nvm, userdata</td><td>Configuração e dados persistentes</td></tr>
+                </tbody>
+            </table>
+            <p>
+                Com a topologia mapeada, o passo seguinte foi em extrair dumps físicos da NAND direto para o pendrive via <code class="inline-code">dd</code>, bit a bit. Conseguimos copiar as partições como <code class="inline-code">mtd14</code> e <code class="inline-code">mtd19</code> foram copiadas inteiras para análise posterior em editor hexadecimal no PC — incluindo os containers de imagem usados na tela de boot.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-id-badge"></i> Trocando o "CPF" do sistema: o spoof do branding</h3>
+            <p>
+                Com acesso root e o sistema de arquivos mapeado, o projeto naturalmente cresceu além do que inicialmente queríamos. A pergunta seguinte foi: já que chegamos até aqui, com acesso total, o que mais a gente consegue fazer?
+            </p>
+            <p>
+                A resposta envolveu manipular a <strong>identidade que o sistema apresenta para o mundo externo</strong>, em três frentes:
+            </p>
+            <p>
+                <strong>Spoof do Android Auto.</strong> Editamos o arquivo de propriedades para injetar informações do sistema, como a montadora, modelo e ano do meu carro. Agora, durante o handshake de conexão, o smartphone passou a validar a central como um equipamento original Ford — em vez de identificá-la como um Rolls-Royce como ela fazia originalmente kkkkkkkk
+            </p>
+            <figure class="featured-image-container">
+                <img src="images/androidauto.jpg" alt="O Android Auto interpreta o sistema como um equipamento original Ford" onerror="this.style.display='none'">
+                <figcaption class="image-caption">O Android Auto interpreta o sistema como um equipamento original Ford.</figcaption>
+            </figure>             
+            <p>                
+                <strong>Persistência de Wi-Fi e Bluetooth.</strong> Para que o nome da rede e do Bluetooth sobrevivessem ao desligamento da chave de ignição (e não voltassem ao padrão de fábrica), editamos os scripts de boot locais, para fixar permanentemente o SSID e o broadcast Bluetooth como <strong>"Ford Escort"</strong>, o modelo real do meu carro.
+            </p>
+            <figure class="featured-image-container">
+                <img src="images/btname.jpeg" alt="Nome do Bluetooth e do Wi-Fi, agora devidamente certos hehe" onerror="this.style.display='none'">
+                <figcaption class="image-caption">Nome do Bluetooth e do Wi-Fi, agora devidamente certos hehe</figcaption>
+            </figure>   
+            <p>
+                E o mais bizarro de tudo isso é que literalmente não precisamos realizar nenhuma intervenção na parte física do equipamento. Simplesmente aproveitamos a "porta dos fundos" que o próprio fabricante deixou aberta, e a usamos para reescrever a identidade do sistema operacional embarcado.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-image"></i> O objetivo original, enfim: a logo da Ford!</h3>
+            <p>
+                Voltando ao motivo que começou tudo isso: a logo da Ford foi, sim, implementada com sucesso na tela de boot. Mas o caminho até lá teve uma reviravolta técnica própria — descrita a seguir.
+            </p>
+            <div class="featured-image-container">
+            <img src="images/bootlogo.jpg" alt="Finalmente!" onerror="this.style.display='none'">
+        </div>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-lock"></i> O bloqueio remanescente: o MD5 que protege a NAND de si mesma</h3>
+            <p>
+                A partição de logo (<code class="inline-code">mtd14</code>) foi mapeada e extraída sem problemas. A surpresa veio no formato: não era um JPEG ou PNG comum, mas um <strong>container proprietário RAW RGBA</strong>, em resolução 1024x600, exigindo decodificação manual no editor hexadecimal para ser compreendido.
+            </p>
+            <p>
+                Decodificar não foi o problema — regravar, sim. Os scripts de atualização ISP da Sunplus mantêm um <strong>hash MD5 fixo (hardcoded)</strong> no sistema, validado no boot. Qualquer tentativa de sobrescrever essa partição bit a bit via <code class="inline-code">dd</code> pelo pendrive altera a assinatura esperada, e o sistema detecta a divergência na inicialização seguinte.
+            </p>
+            <div class="callout-box warning-box">
+                <p>
+                    <strong>O risco é grande:</strong> forçar essa gravação fora da validação esperada tem alta chance de resultar em hard-brick — a central para de inicializar por completo, sem um caminho de recuperação simples.
+                </p>
+            </div>
+            <p>
+                Diante desse risco, a injeção direta de imagem na NAND ficou como um bloqueio técnico em aberto. A solução adotada foi direto ao ponto: vasculhando a partição raiz, notei que a própria ROM já trazia um pacote com dezenas de logos automotivas no diretório <code class="inline-code">resource/logo/</code>. A logo da Ford já estava lá. Foi só alterar o arquivo de configuração do sistema (na partição gravável YAFFS2) apontando para ela. O bypass do MD5 foi feito ignorando-o por completo.
+            </p>
+        </div>
+
+        <div class="writeup-section">
+            <h3><i class="fas fa-flask"></i> Onde isso fica agora</h3>
+            <p>
+                O resultado final: uma central multimidia externa Navpro respondendo como uma Ford SYNC para o Android Auto, com SSID e Bluetooth fixos como "Ford Escort", boot logo da Ford, e um mapa completo da estrutura interna do sistema — partições, sistemas de arquivos, e o ponto exato onde a trava de segurança do fabricante impede ir além.
+            </p>
+            <p>
+                A trava do MD5 no bootloader continua como o próximo desafio em aberto. Entender exatamente como esse hash é gerado e validado é o que separaria um contorno funcional de uma solução completa para a partição de logo. <br><br>Mas isso é assunto para os próximos capítulos dessa saga hehe
+
+                <br><br>Confira também um pouco dessa aventura no repositório do <a href="https://github.com/jvfigueiro/sphe8368-headunit-modding" class="text-accent text-decoration-none">GitHub</a>
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="w-100 border-top py-4 mt-auto">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+            <p class="text-muted mb-3 mb-md-0 fs-6">
+                &copy; <span id="currentYear"></span> João Figueiró. Todos os direitos reservados.
+            </p>
+
+            <div class="d-flex">
+                <a href="https://instagram.com/jvfigueiro" target="_blank" class="social-btn" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/figueiro" target="_blank" class="social-btn" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/jvfigueiro" target="_blank" class="social-btn" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:contato@jvfigueiro.com" class="social-btn" aria-label="E-mail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
