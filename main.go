@@ -8,21 +8,21 @@ import (
 )
 
 func main() {
-	diretorioSite := "./html"
+	staticDir := "./html"
 
-	fileServer := http.FileServer(http.Dir(diretorioSite))
+	fileServer := http.FileServer(http.Dir(staticDir))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		
-		path := filepath.Join(diretorioSite, r.URL.Path)
+		path := filepath.Join(staticDir, r.URL.Path)
 
 		info, err := os.Stat(path)
 
-		if os.IsNotExist(err) || (info != nil && info.IsDir() && semIndex(path)) {
+		if os.IsNotExist(err) || (info != nil && info.IsDir() && hasNoIndex(path)) {
 			
 			w.WriteHeader(http.StatusNotFound)
 			
-			http.ServeFile(w, r, filepath.Join(diretorioSite, "404.html"))
+			http.ServeFile(w, r, filepath.Join(staticDir, "404.html"))
 			return
 		}
 
@@ -37,7 +37,7 @@ func main() {
 	}
 }
 
-func semIndex(dirPath string) bool {
+func hasNoIndex(dirPath string) bool {
 	indexPath := filepath.Join(dirPath, "index.html")
 	_, err := os.Stat(indexPath)
 	return os.IsNotExist(err)
